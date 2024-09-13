@@ -1,5 +1,6 @@
 
 
+
 ;;  FunC 標準工具庫
 ;;  繁體中文註解版 by Y.C.
 
@@ -85,8 +86,8 @@ forall X -> tuple cons(X head, tuple tail) asm "CONS";
 
 
 ;;; 	分拆並提取 Lisp 格式列表的頭尾兩部份， uncons 先回傳頭部再回傳尾部的 tuple ，list_next 先回傳尾部 tuple 後才回傳頭部。
-forall X -> (X, tuple) uncons(tuple list) asm "UNCONS";
-forall X -> (tuple, X) list_next(tuple list) asm(-> 1 0) "UNCONS";
+      forall X -> (X, tuple) uncons(tuple list) asm "UNCONS";
+      forall X -> (tuple, X) list_next(tuple list) asm(-> 1 0) "UNCONS";
 
 
 
@@ -94,8 +95,8 @@ forall X -> (tuple, X) list_next(tuple list) asm(-> 1 0) "UNCONS";
 
 
 ;;; 	大致功能如 cons，但 car 只是回傳頭部的值，cdr 只是回傳尾部的 tuple。
-forall X -> X car(tuple list) asm "CAR";
-tuple cdr(tuple list) asm "CDR";
+      forall X -> X car(tuple list) asm "CAR";
+      tuple cdr(tuple list) asm "CDR";
 
 
 
@@ -103,7 +104,7 @@ tuple cdr(tuple list) asm "CDR";
 
 
 ;;; 	創造一個沒有任何元素的 tuple，通常用作新增事項並在之後擴展。
-tuple empty_tuple() asm "NIL";
+      tuple empty_tuple() asm "NIL";
 
 
 
@@ -112,8 +113,8 @@ tuple empty_tuple() asm "NIL";
 
 ;;; 	將一個元素放置於 tuple 的末端，但需確保添加元素後的 tuple 不能超過 255 個元素，否則會導致類型檢查異常。
 ;;	~tpush 返回了一個額外的空元組 () 作為附加返回值。這可能用於一些需要額外返回值的場景
-forall X -> tuple tpush(tuple t, X value) asm "TPUSH";
-forall X -> (tuple, ()) ~tpush(tuple t, X value) asm "TPUSH";
+      forall X -> tuple tpush(tuple t, X value) asm "TPUSH";
+      forall X -> (tuple, ()) ~tpush(tuple t, X value) asm "TPUSH";
 
 
 
@@ -121,10 +122,10 @@ forall X -> (tuple, ()) ~tpush(tuple t, X value) asm "TPUSH";
 
 
 ;;; 	傳入相關數量的值，創造帶有 1 / 2 / 3 / 4 個元素 tuple。
-forall X -> [X] single(X x) asm "SINGLE";
-forall X, Y -> [X, Y] pair(X x, Y y) asm "PAIR";
-forall X, Y, Z -> [X, Y, Z] triple(X x, Y y, Z z) asm "TRIPLE";
-forall X, Y, Z, W -> [X, Y, Z, W] tuple4(X x, Y y, Z z, W w) asm "4 TUPLE";
+      forall X -> [X] single(X x) asm "SINGLE";
+      forall X, Y -> [X, Y] pair(X x, Y y) asm "PAIR";
+      forall X, Y, Z -> [X, Y, Z] triple(X x, Y y, Z z) asm "TRIPLE";
+      forall X, Y, Z, W -> [X, Y, Z, W] tuple4(X x, Y y, Z z, W w) asm "4 TUPLE";
 
 
 
@@ -132,10 +133,10 @@ forall X, Y, Z, W -> [X, Y, Z, W] tuple4(X x, Y y, Z z, W w) asm "4 TUPLE";
 
 
 ;;; 	把帶有 1 / 2 / 3 / 4 個元素 tuple 拆解回元素類別。
-forall X -> X unsingle([X] t) asm "UNSINGLE";
-forall X, Y -> (X, Y) unpair([X, Y] t) asm "UNPAIR";
-forall X, Y, Z -> (X, Y, Z) untriple([X, Y, Z] t) asm "UNTRIPLE";
-forall X, Y, Z, W -> (X, Y, Z, W) untuple4([X, Y, Z, W] t) asm "4 UNTUPLE";
+      forall X -> X unsingle([X] t) asm "UNSINGLE";
+      forall X, Y -> (X, Y) unpair([X, Y] t) asm "UNPAIR";
+      forall X, Y, Z -> (X, Y, Z) untriple([X, Y, Z] t) asm "UNTRIPLE";
+      forall X, Y, Z, W -> (X, Y, Z, W) untuple4([X, Y, Z, W] t) asm "4 UNTUPLE";
 
 
 
@@ -143,10 +144,10 @@ forall X, Y, Z, W -> (X, Y, Z, W) untuple4([X, Y, Z, W] t) asm "4 UNTUPLE";
 
 
 ;;; 	回傳 tuple 第 1 / 2 / 3 / 4 個元素。
-forall X -> X first(tuple t) asm "FIRST";
-forall X -> X second(tuple t) asm "SECOND";
-forall X -> X third(tuple t) asm "THIRD";
-forall X -> X fourth(tuple t) asm "3 INDEX";
+      forall X -> X first(tuple t) asm "FIRST";
+      forall X -> X second(tuple t) asm "SECOND";
+      forall X -> X third(tuple t) asm "THIRD";
+      forall X -> X fourth(tuple t) asm "3 INDEX";
 
 
 
@@ -154,11 +155,11 @@ forall X -> X fourth(tuple t) asm "3 INDEX";
 
 
 ;;; 	回傳 2 位元素 tuple 中的第 1 / 2 個元素，回傳 3 位元素 tuple 中的第 1 / 2 / 3 個元素。
-forall X, Y -> X pair_first([X, Y] p) asm "FIRST";
-forall X, Y -> Y pair_second([X, Y] p) asm "SECOND";
-forall X, Y, Z -> X triple_first([X, Y, Z] p) asm "FIRST";
-forall X, Y, Z -> Y triple_second([X, Y, Z] p) asm "SECOND";
-forall X, Y, Z -> Z triple_third([X, Y, Z] p) asm "THIRD";
+      forall X, Y -> X pair_first([X, Y] p) asm "FIRST";
+      forall X, Y -> Y pair_second([X, Y] p) asm "SECOND";
+      forall X, Y, Z -> X triple_first([X, Y, Z] p) asm "FIRST";
+      forall X, Y, Z -> Y triple_second([X, Y, Z] p) asm "SECOND";
+      forall X, Y, Z -> Z triple_third([X, Y, Z] p) asm "THIRD";
 
 
 
@@ -166,7 +167,7 @@ forall X, Y, Z -> Z triple_third([X, Y, Z] p) asm "THIRD";
 
 
 ;;; 	建立一個沒有值的元素，在 TVM 中，Null 類型表示原類型值的缺失，所以可理解為暫時不指定特定類型。
-forall X -> X null() asm "PUSHNULL";
+      forall X -> X null() asm "PUSHNULL";
 
 
 
@@ -174,7 +175,7 @@ forall X -> X null() asm "PUSHNULL";
 
 
 ;;; 	當知道變量 x 已確認處於 stack 的某一個位置時，將 x 推到 stack 的頂部。
-forall X -> (X, ()) ~impure_touch(X x) impure asm "NOP";
+      forall X -> (X, ()) ~impure_touch(X x) impure asm "NOP";
 
 
 
@@ -182,7 +183,7 @@ forall X -> (X, ()) ~impure_touch(X x) impure asm "NOP";
 
 
 ;;; 	回傳目前 Unix 整數時間，可理解為從 c7 寄存器 當中取得 Unix timestamp。
-int now() asm "NOW";
+      int now() asm "NOW";
 
 
 
@@ -190,7 +191,7 @@ int now() asm "NOW";
 
 
 ;;; 	以 Slice 格式回傳當前智能合約地址。
-slice my_address() asm "MYADDR";
+      slice my_address() asm "MYADDR";
 
 
 
@@ -199,7 +200,7 @@ slice my_address() asm "MYADDR";
 
 ;;; 	回傳目前智能合約的餘額，包括 TON 代幣以及其他 Jetton 代幣的餘額。
 ;;	當中的 cell 在理論上可以表示多達 2^32（約 43 億）種不同的 Jetton 代幣。
-[int, cell] get_balance() asm "BALANCE";
+      [int, cell] get_balance() asm "BALANCE";
 
 
 
@@ -207,8 +208,8 @@ slice my_address() asm "MYADDR";
 
 
 ;;; 	回傳當前交易的邏輯時間 / 回傳當前區塊的起始邏輯時間。
-int cur_lt() asm "LTIME";
-int block_lt() asm "BLOCKLT";
+      int cur_lt() asm "LTIME";
+      int block_lt() asm "BLOCKLT";
 
 
 
@@ -218,9 +219,9 @@ int block_lt() asm "BLOCKLT";
 ;;; 	回傳一個 256 位無符號整數的 representation hash，用作簽署和檢查用途。
 ;;	cell_hash 及 slice_hash 分別存入 cell 及 slice 類別進行操作
 ;;	string_hash 的位元長度必須是 8 的倍數，否則將會拋出 cell 下溢異常
-int cell_hash(cell c) asm "HASHCU";
-int slice_hash(slice s) asm "HASHSU";
-int string_hash(slice s) asm "SHA256U";
+      int cell_hash(cell c) asm "HASHCU";
+      int slice_hash(slice s) asm "HASHSU";
+      int string_hash(slice s) asm "SHA256U";
 
 
 
@@ -228,10 +229,10 @@ int string_hash(slice s) asm "SHA256U";
 
 
 ;;; 	找出兩個整數的最小值 (min) 和最大值 (max)，將兩個整數排序 (minmax)，以及計算整數的絕對值 (abs)。
-int min(int x, int y) asm "MIN";
-int max(int x, int y) asm "MAX";
-(int, int) minmax(int x, int y) asm "MINMAX";
-int abs(int x) asm "ABS";
+      int min(int x, int y) asm "MIN";
+      int max(int x, int y) asm "MAX";
+      (int, int) minmax(int x, int y) asm "MINMAX";
+      int abs(int x) asm "ABS";
 
 
 
@@ -239,7 +240,7 @@ int abs(int x) asm "ABS";
 
 
 ;;; 	顯示堆疊中最多 255 個值（從堆疊頂部開始），並顯示堆疊的總深度，用於 local 檢查當前堆疊狀態和追踪問題。（TVM 中愈多程序，深度值愈大）
-() dump_stack() impure asm "DUMPSTK";
+      () dump_stack() impure asm "DUMPSTK";
 
 
 
@@ -247,7 +248,7 @@ int abs(int x) asm "ABS";
 
 
 ;;; 	強制保存寄存器c4（“持久性資料”）和c5（“動作”）的當前狀態，以便即使拋出異常，執行也會“成功”地執行。
-() commit() impure asm "COMMIT";
+      () commit() impure asm "COMMIT";
 
 
 
@@ -255,7 +256,7 @@ int abs(int x) asm "ABS";
 
 
 ;;; 	判斷某個 cell 是否為空值（即 null）。
-int cell_null?(cell c) asm "ISNULL";
+      int cell_null?(cell c) asm "ISNULL";
 
 
 
@@ -263,7 +264,7 @@ int cell_null?(cell c) asm "ISNULL";
 
 
 ;;; 	my_code 將檢索並回傳當前存儲在智能合約的 c7 寄存器中的智能合約代碼。
-cell my_code() asm "MYCODE";
+      cell my_code() asm "MYCODE";
 
 
 
@@ -271,7 +272,7 @@ cell my_code() asm "MYCODE";
 
 
 ;;; 	set_code 將會把智能合約代碼更改為 new_code 提供的新代碼，更改操作只在智能合約的執行成功完成後才生效。如合約執行過程中出現錯誤或失敗，代碼將不會被更改。
-() set_code(cell new_code) impure asm "SETCODE";
+      () set_code(cell new_code) impure asm "SETCODE";
 
 
 
@@ -279,19 +280,19 @@ cell my_code() asm "MYCODE";
 
 
 ;;; 	常量 / 布爾值 / 特殊地址 / 操作碼（op）/ 查詢 ID（query_id）在 stdlib.fc 的定義及基本操作。
-const int TRUE = -1;
-const int FALSE = 0;
-const int MASTERCHAIN = -1;
-const int BASECHAIN = 0;
-const int MSG_OP_SIZE = 32;
-const int MSG_QUERY_ID_SIZE = 64;
-(slice, ()) ~skip_maybe_ref(slice s) asm "SKIPOPTREF";
-(slice, int) ~load_bool(slice s) inline { return s.load_int(1); }
-builder store_bool(builder b, int value) inline { return b.store_int(value, 1); }
-builder store_address_none(builder b) inline { return b.store_uint(0, 2);}
-slice address_none() asm "<b 0 2 u, b> <s PUSHSLICE";
-int is_address_none(slice s) inline { return s.preload_uint(2) == 0; }
-;; addr_none$00 = MsgAddressExt; 
+      const int TRUE = -1;
+      const int FALSE = 0;
+      const int MASTERCHAIN = -1;
+      const int BASECHAIN = 0;
+      const int MSG_OP_SIZE = 32;
+      const int MSG_QUERY_ID_SIZE = 64;
+      (slice, ()) ~skip_maybe_ref(slice s) asm "SKIPOPTREF";
+      (slice, int) ~load_bool(slice s) inline { return s.load_int(1); }
+      builder store_bool(builder b, int value) inline { return b.store_int(value, 1); }
+      builder store_address_none(builder b) inline { return b.store_uint(0, 2);}
+      slice address_none() asm "<b 0 2 u, b> <s PUSHSLICE";
+      int is_address_none(slice s) inline { return s.preload_uint(2) == 0; }
+      ;; addr_none$00 = MsgAddressExt; 
 
 
 
@@ -445,12 +446,15 @@ slice skip_dict(slice s) asm "SKIPDICT";
 
 
 {-
-      slice_refs 回傳 slice 中對其他 cell 的引用數量； slice_bits_refs 回傳位元數據量和 cell 引用數量；
+      slice_bits 回傳 slice 數據所使用的位元量；
+      slice_refs 回傳 slice 中對其他 cell 的引用數量； 
+      slice_bits_refs 回傳位元數據量和 cell 引用數量；
       slice_data_empty? 檢查 slice 是否沒有任何數據位元（但可包含有引用）；
       slice_refs_empty? 檢查 slice 是否沒有任何引用（但可能包含數據位元）；
       slice_empty? 檢查 slice 是否完全沒有任何可用數據或引用； slice_depth 回傳 slice 的最長深度值；
       equal_slices_bits 檢查兩個 slice 的位元數據部分是否完全一致，一致返回 1， 否則返回 0。
 -}
+int slice_bits(slice s) asm "SBITS";
 int slice_refs(slice s) asm "SREFS";
 (int, int) slice_bits_refs(slice s) asm "SBITREFS";
 int slice_empty?(slice s) asm "SEMPTY";
@@ -971,6 +975,7 @@ builder store_query_id(builder b, int query_id) inline {
 ;;; 	TOKEN METADATA
 
 
+
 ;;; 	將不同的元數據條目（例如名稱、符號、描述等）存儲在同一個字典中，以便在需要時檢索。
 (cell, ()) ~set_token_snake_metadata_entry(cell content_dict, int key, slice value) impure {
    content_dict~udict_set_ref(256, key, begin_cell().store_uint(0, 8).store_slice(value).end_cell());
@@ -978,10 +983,8 @@ builder store_query_id(builder b, int query_id) inline {
 }
 
 
+
 ;;; 	將多個元數據條目打包為存儲整體的代幣的元數據單元結構。
 cell create_token_onchain_metadata(cell content_dict) inline {
    return begin_cell().store_uint(0, 8).store_dict(content_dict).end_cell();
 }
-
-
-
