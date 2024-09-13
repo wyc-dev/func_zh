@@ -5,10 +5,10 @@
 🚀 **本資源庫將不斷更新，添加更多學習資源和實踐範例！**
 
 ## 📚 中文註解代碼目錄
-- # FunC 標準工具庫 [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/stdlib_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/readable_pdf/stdlib_zh.pdf)
-- # 第五代 TON 錢包 [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/wallet_v5_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/contracts/wallet_v5_zh.pdf)
-- # Jetton 代幣主合約 [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/jetton-minter_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/contracts/jetton-minter_zh.pdf)
-- # Jetton 錢包構建 [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/jetton-uilts_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/contracts/jetton-uilts_zh.pdf)
+- ### FunC 標準工具庫 - [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/stdlib_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/readable_pdfs/stdlib_zh.pdf)
+- ### 第五代 TON 錢包 - [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/wallet_v5_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/readable_pdfs/wallet_v5_zh.pdf)
+- ### Jetton 代幣主合約 - [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/jetton-minter_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/readable_pdfs/jetton-minter_zh.pdf)
+- ### Jetton 錢包構建 - [代碼](https://github.com/wyc-dev/func_zh/blob/main/contracts/jetton-uilts_zh.fc) / [PDF](https://github.com/wyc-dev/func_zh/blob/main/readable_pdfs/jetton-uilts_zh.pdf)
 
 
 ## ✨ 介紹
