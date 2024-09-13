@@ -25,11 +25,10 @@
 
 #pragma version =0.4.4;
 
+;; 如直接複製貼上，需要修改路徑至工具庫擺放的資料夾位置。
+#include "stdlib_zh.fc";
 
-#include "imports/stdlib.fc";
-
-
-;; 定義各種情況下的錯誤碼，可用於回彈信息讓帳戶了解報錯原因。
+;; 定義各種情況下的錯誤碼，可用於回彈信息讓帳戶/合約邏輯了解報錯原因。
 const int error::signature_disabled = 132;
 const int error::invalid_seqno = 133;
 const int error::invalid_wallet_id = 134;
@@ -48,7 +47,7 @@ const int error::only_extension_can_change_signature_mode = 146;
 const int error::invalid_c5 = 147;
 
 
-;; 定義資料格式大細小（所佔的 bits）。
+;; 定義資料格式大小（所佔的 bits）。
 const int size::bool = 1;
 const int size::seqno = 32;
 const int size::wallet_id = 32;
@@ -292,7 +291,7 @@ cell verify_c5_actions(cell c5, int is_external) inline {
 
 
 
-;; 驗證帶有簽名請求的有效性，檢查信息序列編碼（seqno）和有效期，並確保該信息來自正確的 Jetton Wallet。
+;; 驗證帶有簽名請求的有效性，檢查信息序列編碼（seqno）和有效期，並確保該信息來自錢包的擁有者。
 () process_signed_request(slice in_msg_body, int is_external) impure inline {
     ;; 從信息主體提取簽名並命名這項資料，將用作待會驗證。
     slice signature = in_msg_body.get_last_bits(size::signature);
