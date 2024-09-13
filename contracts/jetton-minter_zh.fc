@@ -19,12 +19,12 @@
 
 
 
-
-#include "stdlib.fc"; 		    ;; 讓文件調用 FunC 標準工具庫代碼
-#include "op-codes.fc"; 		;; 讓文件調用操作碼定義
-#include "workchain.fc"; 	  	;; 讓文件調用區塊鏈地址檢查工具
-#include "jetton-utils.fc"; 	;; 讓文件調用 Jetton 標準程序
-#include "gas.fc"; 			    ;; 讓文件調用 gas fee 計算的相關函數
+;; 如複製此頁貼上到原有項目，需要修改路徑至工具庫擺放的資料夾位置；
+;; 在原版文檔中，op-code_workchain_zh.fc 內容分別以 op-code.fc 及 workchain.fc 擺放。
+#include "stdlib_zh.fc"; 		        ;; 讓文件調用 FunC 標準工具庫代碼
+#include "op-code_workchain_zh.fc";     ;; 讓文件調用操作碼定義及地址檢查工具
+#include "jetton-utils_zh.fc"; 	        ;; 讓文件調用 Jetton 標準程序
+#include "gas_zh.fc"; 			        ;; 讓文件調用 gas fee 計算的相關函數
 
 
 
@@ -47,21 +47,21 @@
 
 
 {-
-load_data() 用作讀取合約中的存儲數據，空括號代表不需要傳入參數使用；
-inline 代表這是一個內部函數，並不能從外來訊息直接調用，只能讓合約內的函數引用；
-(int, slice, slice, cell, cell) 表示這函數將回傳的五個數值類型，對應 data 內的回傳值；
+    load_data() 用作讀取合約中的存儲數據，空括號代表不需要傳入參數使用；
+    inline 代表這是一個內部函數，並不能從外來訊息直接調用，只能讓合約內的函數引用；
+    (int, slice, slice, cell, cell) 表示這函數將回傳的五個數值類型，對應 data 內的回傳值；
 -}
 (int, slice, slice, cell, cell) load_data() inline {
-slice ds = get_data().begin_parse(); ;; 回傳智能合約的 c4 storage，並由 cell 轉換為 slice 
-var data = (
-    ds~load_coins(), 	;; 在 ds 這個 slice 上調用 load_coins() 函數並取得 total_supply
-    ds~load_msg_addr(), ;; 同樣調用 stdlib.fc 當中的函數並取得 admin_address
-    ds~load_msg_addr(), ;; 根據定義好的結合排列，這個就是 next_admin_address
-    ds~load_ref(),  	;; 從剩餘的 slice 繼續載入下一個引用，這資料是 jetton_wallet_code
-    ds~load_ref()  	    ;; 繼續載入儲存在合約中的 metadata_uri 所包含的特定資料格式 cell
-);
-ds.end_parse(); 	    ;; 檢查 slice 是否為空，如果不為空則拋出異常，確認已讀完 ds 全部數據
-return data;
+    slice ds = get_data().begin_parse(); ;; 回傳智能合約的 c4 storage，並由 cell 轉換為 slice 
+    var data = (
+        ds~load_coins(), 	;; 在 ds 這個 slice 上調用 load_coins() 函數並取得 total_supply
+        ds~load_msg_addr(), ;; 同樣調用 stdlib.fc 當中的函數並取得 admin_address
+        ds~load_msg_addr(), ;; 根據定義好的結合排列，這個就是 next_admin_address
+        ds~load_ref(),  	;; 從剩餘的 slice 繼續載入下一個引用，這資料是 jetton_wallet_code
+        ds~load_ref()  	    ;; 繼續載入儲存在合約中的 metadata_uri 所包含的特定資料格式 cell
+    );
+    ds.end_parse(); 	    ;; 檢查 slice 是否為空，如果不為空則拋出異常，確認已讀完 ds 全部數據
+    return data;
 }
 
 
@@ -75,15 +75,15 @@ return data;
     impure 表示此函數會修改存儲數據、發送消息或消耗 gas，inline 表示這是內部函數。
 -}
 () save_data(int total_supply, slice admin_address, slice next_admin_address, cell jetton_wallet_code, cell metadata_uri) impure inline {
-set_data( 	;; 將指定的 cell 設置為合約的 c4 數據，更新合約的持久存儲
-    begin_cell() ;; 創建一個新 builder 構建和組裝資料並存儲數據
-    .store_coins(total_supply) 	        ;; 將 total_supply 值存入並更新 builder 繼續儲存動作
-    .store_slice(admin_address) 	    ;; 將 admin_address 值存入並更新 builder 繼續儲存動作
-    .store_slice(next_admin_address)    ;; 將 next_admin_address 值存入 builder 繼續動作
-    .store_ref(jetton_wallet_code) 	    ;; 將 jetton_wallet_code 值存入 builder 繼續動作
-    .store_ref(metadata_uri) 		    ;; 將 metadata_uri 值存入並更新 builder 繼續儲存動作
-    .end_cell() 	;; 結束 builder 構建，並封裝成 cell
-);
+    set_data( 	;; 將指定的 cell 設置為合約的 c4 數據，更新合約的持久存儲
+        begin_cell() ;; 創建一個新 builder 構建和組裝資料並存儲數據
+        .store_coins(total_supply) 	        ;; 將 total_supply 值存入並更新 builder 繼續儲存動作
+        .store_slice(admin_address) 	    ;; 將 admin_address 值存入並更新 builder 繼續儲存動作
+        .store_slice(next_admin_address)    ;; 將 next_admin_address 值存入 builder 繼續動作
+        .store_ref(jetton_wallet_code) 	    ;; 將 jetton_wallet_code 值存入 builder 繼續動作
+        .store_ref(metadata_uri) 		    ;; 將 metadata_uri 值存入並更新 builder 繼續儲存動作
+        .end_cell() 	;; 結束 builder 構建，並封裝成 cell
+    );
 }
 
 
@@ -98,10 +98,8 @@ set_data( 	;; 將指定的 cell 設置為合約的 c4 數據，更新合約的�
 
     raw_reserve(ONE_TON / 100, RESERVE_REGULAR); 
     ;; 預先保留 0.01 TON 作為存儲費用，RESERVE_REGULAR 在 stdlib.fc 中定義為常用模式
-
     cell state_init = calculate_jetton_wallet_state_init(to_address, my_address(), jetton_wallet_code); 
     ;; 以 cell 定義帳戶的起始狀態 @jetton-uilts
-
     slice to_wallet_address = calculate_jetton_wallet_address(state_init);
     ;; 以起始狀態定義帳戶的錢包地址 @jetton-uilts
 
@@ -353,6 +351,3 @@ slice get_next_admin_address() method_id { ;; 允許外部調用
         (int total_supply, slice admin_address, slice next_admin_address, cell jetton_wallet_code, cell metadata_uri) = load_data();
         return next_admin_address;
 }
-
-
-

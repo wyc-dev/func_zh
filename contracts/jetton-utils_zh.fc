@@ -1,15 +1,16 @@
 
 
-;; 	Jetton 錢包數據結構處理
+;; Jetton 錢包構建
 ;;	繁體中文註解版 by Y.C.
-;;	所有中文均經過人腦編譯，不存在 AI 製造的奇怪語法，並可直接複製貼上取代原有的 jetton-utils.fc 服用。
+;;	所有中文均經過人腦編譯，不存在 AI 製造的奇怪語法，並可直接複製貼上取代原有的 jetton-minter.fc 服用。
 
 
 
 
 
-
-#include "workchain.fc";
+;; 如複製此頁貼上到原有項目，需要修改路徑至工具庫擺放的資料夾位置；
+;; 在原版文檔中，op-code_workchain_zh.fc 內容分別以 op-code.fc 及 workchain.fc 擺放。
+#include "op-code_workchain_zh.fc";
 const int STATUS_SIZE = 4; ;; 定義錢包狀態的佔用空間
 
 
@@ -60,7 +61,7 @@ cell calculate_jetton_wallet_state_init(slice owner_address, slice jetton_master
 slice calculate_jetton_wallet_address(cell state_init) inline {
    return begin_cell()                      ;; 開始建構 cell
    .store_uint(4, 3)                        ;; 將數字 4 存儲為二進制 - 0b100 定義地址類型為 addr_std
-			;; 000 (0)：無地址（addr_none），表示地址未定義或不存在。
+			   ;; 000 (0)：無地址（addr_none），表示地址未定義或不存在。
             ;; 001 (1)：外部地址（addr_extern），表示地址不存在 TON 區塊鏈內。
             ;; 010 (2)：標準地址（addr_std），通常用於表示 TON 區塊鏈內的標準地址。
             ;; 011 (3)：變長地址（addr_var），表示變長格式的地址。
