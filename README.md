@@ -4,12 +4,12 @@
 
 🚀 **本資源庫將不斷更新，添加更多學習資源和實踐範例！**
 
-## 📚 目錄
-- [介紹](#介紹)
-- [資源列表](#資源列表)
-- [如何使用](#如何使用)
-- [貢獻指南](#貢獻指南)
-- [許可協議](#許可協議)
+## 📚 中文註解代碼目錄
+- [ FunC 標準工具庫 ](#contracts/stdlib_zh.fc)
+- [ 第五代 TON 錢包 ](#contracts/wallet_v5_zh.fc)
+- [ Jetton 代幣主合約 ](#contracts/jetton-minter_zh.fc)
+- [ Jetton 錢包構建 ](#contracts/jetton-uilts_zh.fc)
+
 
 ## ✨ 介紹
 FunC 是 Telegram Open Network (TON) 使用的主要智能合約語言。它設計為一種簡潔且高效的編程語言，專注於在 TON 區塊鏈上執行的合約中提供高度安全和可靠性。本資源庫專門針對中文使用者，旨在降低學習曲線並推動 FunC 的社區發展。
