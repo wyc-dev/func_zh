@@ -799,7 +799,7 @@ int get_original_fwd_fee(int workchain, int fwd_fee) asm(fwd_fee workchain) "GET
 tuple get_fee_cofigs() asm "UNPACKEDCONFIGTUPLE";
 int my_storage_due() asm "DUEPAYMENT";
 ;; () buy_gas(int amount) impure asm "BUYGAS";
-() throw_if(int excno, int cond) impure asm "THROWARGIF";
+;; () throw_if(int excno, int cond) impure asm "THROWARGIF";
 
 
 
