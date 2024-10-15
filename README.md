@@ -36,7 +36,7 @@ FunC 是 Telegram Open Network (TON) 使用的主要智能合約語言。它設�
 ## 💻 **如何使用**
 1. 克隆此倉庫到你的本地環境：
     ```bash
-    git clone https://github.com/yourusername/func-zh-repo.git
+    git clone https://github.com/wyc-dev/func_zh.git
     ```
 
 2. 瀏覽資源文件，開始學習 FunC 語言及其應用。推薦先閱讀 `stdlib_zh.pdf` 以瞭解標準函式庫的內容，再根據 `stdlib_zh.fc` 進行實際的編碼練習。
